@@ -1,0 +1,35 @@
+name: Build and Upload Wheel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry install
+
+      - name: Build the wheel
+        run: poetry build
+
+      - name: Upload to Nexus
+        env:
+          NEXUS_USERNAME: "admin"
+          NEXUS_PASSWORD: "1234"
+        run: |
+          curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD \
+          --upload-file dist/*.whl \
+          http://localhost:8081/repository/Python/
