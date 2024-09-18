@@ -17,10 +17,10 @@ jobs:
       #   with:
       #     python-version: '3.x'
 
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry install
+      # - name: Install Poetry
+      #   run: |
+      #     curl -sSL https://install.python-poetry.org | python3 -
+      #     poetry install
 
       - name: Build the wheel
         run: poetry build
