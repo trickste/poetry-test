@@ -15,6 +15,7 @@ jobs:
       - name: Set up Python
         run: |
           sudo apt install python3 pipx -y
+          python3 -m pip install virtualenv
 
       - name: Install Poetry
         run: |
