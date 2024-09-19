@@ -15,6 +15,7 @@ jobs:
       - name: Set up Python
         run: |
           sudo apt install python3 pipx python3-venv -y
+          pip install twine 
 
       - name: Install Poetry
         run: |
@@ -38,7 +39,8 @@ jobs:
       - name: Upload to Nexus
         working-directory: ./csv_processor
         env:
-          NEXUS_USERNAME: "admin"
-          NEXUS_PASSWORD: "1234"
+          TWINE_USERNAME: "admin"
+          TWINE_PASSWORD: "1234"
         run: |
-          curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file dist/*.whl http://localhost:8081/repository/csv-processor/
+          twine upload --repository-url http://localhost:8081/repository/csv-processor/simple/ dist/*
+
