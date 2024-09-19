@@ -14,12 +14,11 @@ jobs:
 
       - name: Set up Python
         run: |
-          sudo apt install python3 -y
+          sudo apt install python3 pipx -y
 
       - name: Install Poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry install
+          pipx install poetry
 
       - name: Build the wheel
         run: poetry build
