@@ -19,15 +19,17 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-          source ~/.bashrc
+          export PATH="$HOME/.local/bin:$PATH"
 
       - name: Verify Poetry Installation
         run: |
+          export PATH="$HOME/.local/bin:$PATH"
           poetry --version
 
       - name: Build the wheel
-        run: poetry build
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          poetry build
 
       - name: Upload to Nexus
         env:
