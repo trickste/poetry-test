@@ -40,4 +40,4 @@ jobs:
         run: |
           curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD \
           --upload-file dist/*.whl \
-          http://localhost:8081/repository/Python/
+          http://localhost:8081/repository/csv-processor/
