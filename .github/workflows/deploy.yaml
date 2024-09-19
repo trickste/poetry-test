@@ -48,5 +48,6 @@ jobs:
           TWINE_USERNAME: "admin"
           TWINE_PASSWORD: "1234"
         run: |
+          export PATH="$HOME/.local/bin:$PATH"
           twine upload --repository-url http://localhost:8081/repository/csv-processor/simple/ dist/*
 
