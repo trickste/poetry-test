@@ -31,6 +31,9 @@ jobs:
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           poetry build
+          apt install tree -y
+          ls -al
+          tree
 
       - name: Upload to Nexus
         working-directory: ./csv_processor
