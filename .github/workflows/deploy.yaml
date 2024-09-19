@@ -27,11 +27,13 @@ jobs:
           poetry --version
 
       - name: Build the wheel
+        working-directory: ./csv_processor
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           poetry build
 
       - name: Upload to Nexus
+        working-directory: ./csv_processor
         env:
           NEXUS_USERNAME: "admin"
           NEXUS_PASSWORD: "1234"
