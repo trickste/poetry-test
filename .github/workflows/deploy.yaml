@@ -31,7 +31,7 @@ jobs:
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           poetry build
-          apt install tree -y
+          sudo apt install tree -y
           ls -al
           tree
 
