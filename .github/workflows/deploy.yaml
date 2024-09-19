@@ -18,7 +18,7 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pipx install poetry
+          pipx install poetry --force
 
       - name: Build the wheel
         run: poetry build
