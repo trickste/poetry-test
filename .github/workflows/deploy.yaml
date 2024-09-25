@@ -58,5 +58,5 @@ jobs:
           NEXUS_PASSWORD: "1234"
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          python publish --repository http://localhost:8081/repository/csv-processor/ -u $NEXUS_USERNAME -p $NEXUS_PASSWORD
+          poetry publish --repository http://localhost:8081/repository/csv-processor/ -u $NEXUS_USERNAME -p $NEXUS_PASSWORD
  
