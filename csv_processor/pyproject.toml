@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "csv-processor"
-version = "0.1.0.v1"
+version = "0.1.0rc1"
 description = ""
 authors = ["Nishant Prakash <nishant.prakash@hp.com>"]
 readme = "README.md"
