@@ -18,10 +18,10 @@ jobs:
           pip install twine 
           export PATH="$HOME/.local/bin:$PATH"
 
-      - name: Verify twine Installation
-        run: |
-          export PATH="$HOME/.local/bin:$PATH"
-          twine --version
+      # - name: Verify twine Installation
+      #   run: |
+      #     export PATH="$HOME/.local/bin:$PATH"
+      #     twine --version
 
       - name: Install Poetry
         run: |
@@ -42,12 +42,21 @@ jobs:
           ls -al
           tree
 
+      # - name: Upload to Nexus
+      #   working-directory: ./csv_processor
+      #   env:
+      #     TWINE_USERNAME: "admin"
+      #     TWINE_PASSWORD: "1234"
+      #   run: |
+      #     export PATH="$HOME/.local/bin:$PATH"
+      #     twine upload --verbose --repository-url http://localhost:8081/repository/csv-processor/ dist/*
+
       - name: Upload to Nexus
         working-directory: ./csv_processor
         env:
-          TWINE_USERNAME: "admin"
-          TWINE_PASSWORD: "1234"
+          NEXUS_USERNAME: "admin"
+          NEXUS_PASSWORD: "1234"
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          twine upload --verbose  --repository-url http://localhost:8081/repository/csv-processor/ dist/*
-
+          python publish --repository http://localhost:8081/repository/csv-processor/ -u $NEXUS_USERNAME -p $NEXUS_PASSWORD
+ 
