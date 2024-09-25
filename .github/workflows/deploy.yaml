@@ -69,6 +69,9 @@ jobs:
           NEXUS_PASSWORD: "1234"
         run: |
           export PATH="$HOME/.local/bin:$PATH"
+          env=`poetry env list | awk 'print $1'`
+          echo $env
+          poetry env remove $env
           mv pyproject.toml v1_pyproject.toml
           mv v2_pyproject.toml pyproject.toml
           poetry config repositories.marvel-repo http://localhost:8081/repository/csv-processor/
