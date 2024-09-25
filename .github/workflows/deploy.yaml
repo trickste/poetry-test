@@ -74,6 +74,7 @@ jobs:
           poetry env remove $env
           mv pyproject.toml v1_pyproject.toml
           mv v2_pyproject.toml pyproject.toml
+          sudo apt install python3.12 python3-pip pipx python3-venv -y
           poetry config repositories.marvel-repo http://localhost:8081/repository/csv-processor/
           poetry config http-basic.marvel-repo ${{ env.NEXUS_USERNAME }} ${{ env.NEXUS_PASSWORD }}
           poetry publish --build --repository marvel-repo
