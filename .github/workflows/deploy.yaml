@@ -58,5 +58,7 @@ jobs:
           NEXUS_PASSWORD: "1234"
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          poetry publish --repository http://localhost:8081/repository/csv-processor/ -u $NEXUS_USERNAME -p $NEXUS_PASSWORD
+          poetry config repositories.marvel-repo http://localhost:8081/repository/csv-processor/
+          poetry config http-basic.marvel-repo ${{ env.NEXUS_USERNAME }} ${{ env.NEXUS_PASSWORD }}
+          poetry publish --repository marvel-repo
  
