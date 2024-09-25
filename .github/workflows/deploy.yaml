@@ -33,14 +33,14 @@ jobs:
           export PATH="$HOME/.local/bin:$PATH"
           poetry --version
 
-      - name: Build the wheel
-        working-directory: ./csv_processor
-        run: |
-          export PATH="$HOME/.local/bin:$PATH"
-          poetry build
-          sudo apt install tree -y
-          ls -al
-          tree
+      # - name: Build the wheel
+      #   working-directory: ./csv_processor
+      #   run: |
+      #     export PATH="$HOME/.local/bin:$PATH"
+      #     poetry build
+      #     sudo apt install tree -y
+      #     ls -al
+      #     tree
 
       # - name: Upload to Nexus
       #   working-directory: ./csv_processor
@@ -51,7 +51,7 @@ jobs:
       #     export PATH="$HOME/.local/bin:$PATH"
       #     twine upload --verbose --repository-url http://localhost:8081/repository/csv-processor/ dist/*
 
-      - name: Upload to Nexus
+      - name: Upload to Nexus csv_v1
         working-directory: ./csv_processor
         env:
           NEXUS_USERNAME: "admin"
@@ -60,5 +60,18 @@ jobs:
           export PATH="$HOME/.local/bin:$PATH"
           poetry config repositories.marvel-repo http://localhost:8081/repository/csv-processor/
           poetry config http-basic.marvel-repo ${{ env.NEXUS_USERNAME }} ${{ env.NEXUS_PASSWORD }}
-          poetry publish --repository marvel-repo
+          poetry publish --build --repository marvel-repo
+      
+      - name: Upload to Nexus csv_v2
+        working-directory: ./csv_processor
+        env:
+          NEXUS_USERNAME: "admin"
+          NEXUS_PASSWORD: "1234"
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          mv pyproject.toml v1_pyproject.toml
+          mv v2_pyproject.toml pyproject.toml
+          poetry config repositories.marvel-repo http://localhost:8081/repository/csv-processor/
+          poetry config http-basic.marvel-repo ${{ env.NEXUS_USERNAME }} ${{ env.NEXUS_PASSWORD }}
+          poetry publish --build --repository marvel-repo
  
