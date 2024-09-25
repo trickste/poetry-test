@@ -74,7 +74,7 @@ jobs:
           mv pyproject.toml v1_pyproject.toml
           mv v2_pyproject.toml pyproject.toml
           sudo apt update && sudo apt upgrade -y
-          suddo apt install software-properties-common -y
+          sudo apt install software-properties-common -y
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update -y
           sudo apt install python3.12 -y
