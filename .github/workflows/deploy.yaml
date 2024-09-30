@@ -71,6 +71,7 @@ jobs:
           export PATH="$HOME/.local/bin:$PATH"
           env=`poetry env list | awk '{print $1}'`
           poetry env remove $env
+          echo "test"
           mv pyproject.toml v1_pyproject.toml
           mv v2_pyproject.toml pyproject.toml
           sudo apt update && sudo apt upgrade -y
